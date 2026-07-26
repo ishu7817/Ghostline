@@ -20,16 +20,19 @@ export async function POST(request: Request) {
 
     const user = await User.findOne({ username: decodedusername });
     if (!user) {
-      return Response.json({
-        success: false,
-        message: " a user doesn't exist with this username",
-      }, {status: 400});
+      return Response.json(
+        {
+          success: false,
+          message: " a user doesn't exist with this username",
+        },
+        { status: 400 },
+      );
     }
     const iscodevalid = user.verifyCode === verifycode;
     const iscodenotexpired = new Date(user.verifyCodeExpiry) > new Date();
 
     console.log("DB Code:", user.verifyCode, "| Type:", typeof user.verifyCode);
-console.log("Postman Code:", verifycode, "| Type:", typeof verifycode);
+    console.log("Postman Code:", verifycode, "| Type:", typeof verifycode);
 
     if (iscodevalid && iscodenotexpired) {
       user.isVerified = true;
@@ -43,33 +46,32 @@ console.log("Postman Code:", verifycode, "| Type:", typeof verifycode);
       );
     }
 
-      if (!iscodevalid) {
-        return Response.json(
-          {
-            success: false,
-            message: "wrong verification code",
-          },
-          { status: 400 },
-        );
-      }
+    if (!iscodevalid) {
+      return Response.json(
+        {
+          success: false,
+          message: "wrong verification code",
+        },
+        { status: 400 },
+      );
+    }
 
-      if (!iscodenotexpired) {
-        return Response.json(
-          {
-            success: false,
-            message: "verification code time out...",
-          },
-          { status: 400 },
-        );
-      
+    if (!iscodenotexpired) {
+      return Response.json(
+        {
+          success: false,
+          message: "verification code time out...",
+        },
+        { status: 400 },
+      );
     }
   } catch (error) {
-    return (
-      Response.json({
+    return Response.json(
+      {
         success: false,
         message: "error verifying the user",
-      }),
-      { status: 400 }
+      },
+      { status: 400 },
     );
   }
 }
