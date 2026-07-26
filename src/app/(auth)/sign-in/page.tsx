@@ -43,13 +43,15 @@ export default function SignInPage() {
       });
       setIsSubmitting(false);
       return;
-    } else if (response?.url) {
-      toast.success("Success!", {
-        description: "Signed in successfully.",
-      });
-      router.replace("/dashboard");
-    }
+    } 
+    if (response?.ok) {
+    toast.success("Success!", {
+      description: "Signed in successfully.",
+    });
     
+    router.replace("/dashboard");
+    return;
+  }
     setIsSubmitting(false);
   };
 
@@ -133,7 +135,7 @@ export default function SignInPage() {
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="w-full h-12 !bg-white !text-black hover:!bg-neutral-200 font-semibold rounded-2xl transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] mt-2"
+            className="w-full h-12 cursor-pointer !bg-white !text-black hover:!bg-neutral-200 font-semibold rounded-2xl transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] mt-2"
           >
             {isSubmitting ? (
               <>
