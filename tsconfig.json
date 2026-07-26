@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "src/models", "src/lib/lib", "src/components/ui/d"  ],
   "exclude": ["node_modules"]
 }
