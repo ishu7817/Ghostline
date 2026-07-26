@@ -24,7 +24,7 @@ export async function POST(request: Request) {
   const acceptMessages = await request.json();
 
   try {
-    const actualuser = User.findByIdAndUpdate(
+    const actualuser = await User.findByIdAndUpdate(
       userid,
       { isAcceptingMessages: acceptMessages },
       { new: true },
@@ -94,7 +94,7 @@ export async function GET(request: Request) {
     return Response.json(
       {
         success: false,
-        message: "there was a error updating user's message accepting status ",
+        message: "there was a error fetching the user's message accepting status ",
       },
       { status: 500 },
     );
