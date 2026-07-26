@@ -26,7 +26,6 @@ export default function SignUpPage() {
   const [debouncedUsername] = useDebounceValue(username, 400);
   const router = useRouter();
 
-  // Zod implementation
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -90,7 +89,6 @@ export default function SignUpPage() {
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black flex items-center justify-center relative overflow-hidden px-4 py-12">
-      {/* Background ambient glow matching theme */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-gradient-to-br from-violet-600/20 via-fuchsia-600/10 to-transparent blur-[140px] pointer-events-none" />
 
       <motion.div
@@ -99,7 +97,6 @@ export default function SignUpPage() {
         transition={{ duration: 0.5 }}
         className="w-full max-w-md p-8 sm:p-10 rounded-3xl bg-white/[0.02] border border-white/10 backdrop-blur-2xl shadow-2xl relative z-10"
       >
-        {/* Header Branding */}
         <div className="text-center mb-8">
           <Link
             href="/"
@@ -115,9 +112,7 @@ export default function SignUpPage() {
           </p>
         </div>
 
-        {/* Form Container */}
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-          {/* Username Field */}
           <Controller
             name="username"
             control={form.control}
@@ -163,7 +158,7 @@ export default function SignUpPage() {
             )}
           />
 
-          {/* Email Field */}
+
           <Controller
             name="email"
             control={form.control}
@@ -190,7 +185,6 @@ export default function SignUpPage() {
             )}
           />
 
-          {/* Password Field */}
           <Controller
             name="password"
             control={form.control}
@@ -217,7 +211,6 @@ export default function SignUpPage() {
             )}
           />
 
-          {/* Submit Button */}
           <Button
             type="submit"
             disabled={isSubmitting}
@@ -234,7 +227,6 @@ export default function SignUpPage() {
           </Button>
         </form>
 
-        {/* Footer Link */}
         <div className="text-center mt-6 text-xs text-white/40">
           Already have a link?{" "}
           <Link

@@ -33,7 +33,7 @@ export default function VerifyAccount() {
     try {
       const response = await axios.post("/api/verify-code", {
         username,
-        verifycode: data.code, // pulled cleanly from react-hook-form data
+        verifycode: data.code, 
       });
 
       if (!response.data.success) {
@@ -61,7 +61,6 @@ export default function VerifyAccount() {
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black flex items-center justify-center relative overflow-hidden px-4">
-      {/* Background ambient glow matching theme */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-gradient-to-br from-violet-600/20 via-fuchsia-600/10 to-transparent blur-[140px] pointer-events-none" />
 
       <motion.div
@@ -70,7 +69,6 @@ export default function VerifyAccount() {
         transition={{ duration: 0.5 }}
         className="w-full max-w-md p-8 sm:p-10 rounded-3xl bg-white/[0.02] border border-white/10 backdrop-blur-2xl shadow-2xl relative z-10"
       >
-        {/* Header Branding */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-block text-xs uppercase tracking-widest text-violet-400 font-semibold mb-2 hover:text-white transition-colors">
             ← Ghostline
@@ -83,7 +81,6 @@ export default function VerifyAccount() {
           </p>
         </div>
 
-        {/* Form Container */}
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           <Controller
             name="code"

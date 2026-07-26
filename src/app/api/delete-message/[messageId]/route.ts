@@ -5,9 +5,9 @@ import { authOptions } from "../../auth/[...nextauth]/options";
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { messageId: string } },
+  { params }: { params: Promise<{ messageId: string }> },
 ) {
-  const { messageId } = params;
+  const { messageId } = await  params;
 
   try {
     await dbConnect();

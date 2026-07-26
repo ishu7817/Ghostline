@@ -5,13 +5,12 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
-export default function LandingPage() {
+export default function Page() {
   return (
     <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black overflow-hidden relative">
-      {/* Subtle background ambient glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-gradient-to-br from-violet-600/25 via-fuchsia-600/10 to-transparent blur-[130px] pointer-events-none" />
 
-      {/* 1. HERO SECTION */}
+      
       <section className="relative z-10 flex flex-col items-center justify-center min-h-[90vh] px-4 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -27,16 +26,16 @@ export default function LandingPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight max-w-4xl mb-6 bg-gradient-to-br from-yellow-200/90 via-yellow-200/80 to-yellow-200/40 bg-clip-text text-transparent"
+          className=" h-fit text-5xl md:text-7xl lg:text-8xl font-black tracking-tight max-w-4xl mb-6 bg-gradient-to-br from-yellow-400/80 via-yellow-300/80 to-yellow-200/80 bg-clip-text text-transparent"
         >
-          Say what you can&apos;t say.
+          Send what you can&apos;t say.
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-lg md:text-xl text-white/60 max-w-xl mb-10 font-normal leading-relaxed"
+          className="text-lg md:text-xl  text-white/60 max-w-xl mt-10 font-normal leading-relaxed"
         >
           Create your secure link, share it anywhere, and receive honest thoughts without the friction of identities.
         </motion.p>
@@ -55,7 +54,7 @@ export default function LandingPage() {
         </motion.div>
       </section>
 
-      {/* 2. HOW IT WORKS */}
+   
       <section className="relative z-10 max-w-6xl mx-auto px-6 py-24 border-t border-white/10">
         <div className="text-center mb-16">
           <h2 className="text-xs uppercase tracking-widest text-violet-400 font-semibold mb-3">Mechanism</h2>
@@ -63,7 +62,6 @@ export default function LandingPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-          {/* Step 01 */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -82,7 +80,6 @@ export default function LandingPage() {
             </div>
           </motion.div>
 
-          {/* Step 02 */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -101,7 +98,6 @@ export default function LandingPage() {
             </div>
           </motion.div>
 
-          {/* Step 03 */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -122,7 +118,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 3. LIVE EXAMPLE / MOCK MESSAGE PREVIEW */}
       <section className="relative z-10 max-w-3xl mx-auto px-6 py-20">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -143,13 +138,12 @@ export default function LandingPage() {
             <span>— sent anonymously via Ghostline</span>
             <motion.div className="flex items-center ">
 
-            <span >Just now <span className="   text-green-500 text-2xl animate-pulse duration-400">·</span> </span> 
+            <span >Just now <span className="   bg-violet-400 text-transparent bg-clip-text blur-[1px] text-2xl animate-pulse duration-400">·</span> </span> 
             </motion.div>
           </div>
         </motion.div>
       </section>
 
-      {/* 4. WHY ANONYMOUS / TRUST */}
       <section className="relative z-10 max-w-2xl mx-auto px-6 py-16 text-center">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -162,7 +156,6 @@ export default function LandingPage() {
         </motion.p>
       </section>
 
-      {/* 5. FINAL CTA */}
       <section className="relative z-10 max-w-4xl mx-auto px-6 py-20 text-center border-t border-white/10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -186,16 +179,15 @@ export default function LandingPage() {
         </motion.div>
       </section>
 
-      {/* 6. SIMPLE FOOTER */}
-      <footer className="relative z-10 max-w-6xl mx-auto px-6 py-12 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-xs text-white/40 gap-4">
+      <footer className="relative z-10 max-w-6xl mx-auto px-6 py-12  border-white/5 flex flex-col sm:flex-row items-center justify-between text-xs text-white/40 gap-4">
         <p>© {new Date().getFullYear()} Ghostline. All rights reserved.</p>
         <p>
-          Built by{" "}
+          Built with <span className=" text-white">💜</span> by{" "}
           <a
-            href="https://ishusyncs-library.vercel.app/"
+            
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white underline underline-offset-4 hover:text-violet-400 transition-colors"
+            className="text-white hover:text-violet-400 transition-colors"
           >
             Ishu
           </a>

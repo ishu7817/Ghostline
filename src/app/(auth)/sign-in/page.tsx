@@ -10,8 +10,6 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
 import { Loader2 } from "lucide-react";
-
-// Note: Ensure your schema file exports it with this spelling, or adjust if you used singInSchema
 import { signInSchema } from "@/schemas/signInSchema"; 
 import { Field, FieldLabel, FieldError } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
@@ -21,7 +19,7 @@ export default function SignInPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
-  // Zod implementation
+  
   const form = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
@@ -57,7 +55,6 @@ export default function SignInPage() {
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black flex items-center justify-center relative overflow-hidden px-4 py-12">
-      {/* Background ambient glow matching theme */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-gradient-to-br from-violet-600/20 via-fuchsia-600/10 to-transparent blur-[140px] pointer-events-none" />
 
       <motion.div
@@ -66,7 +63,6 @@ export default function SignInPage() {
         transition={{ duration: 0.5 }}
         className="w-full max-w-md p-8 sm:p-10 rounded-3xl bg-white/[0.02] border border-white/10 backdrop-blur-2xl shadow-2xl relative z-10"
       >
-        {/* Header Branding */}
         <div className="text-center mb-8">
           <Link
             href="/"
@@ -82,9 +78,7 @@ export default function SignInPage() {
           </p>
         </div>
 
-        {/* Form Container */}
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-          {/* Identifier (Username/Email) Field */}
           <Controller
             name="identifier"
             control={form.control}
@@ -110,7 +104,6 @@ export default function SignInPage() {
             )}
           />
 
-          {/* Password Field */}
           <Controller
             name="password"
             control={form.control}
@@ -137,7 +130,6 @@ export default function SignInPage() {
             )}
           />
 
-          {/* Submit Button */}
           <Button
             type="submit"
             disabled={isSubmitting}
@@ -154,7 +146,6 @@ export default function SignInPage() {
           </Button>
         </form>
 
-        {/* Footer Link */}
         <div className="text-center mt-6 text-xs text-white/40">
           Don&apos;t have an account yet?{" "}
           <Link

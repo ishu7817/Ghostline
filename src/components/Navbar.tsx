@@ -15,7 +15,7 @@ return (
   <div>
     <nav className="py-5 bg-black content-center ">
       <div className=" flex justify-around  content-center">
-        <a  className = "font-mono  font-extrabold text-xl" href="#">Mystery Message</a>
+        <a  className = "font-mono  font-extrabold text-xl" href="#">Ghostlinee</a>
         {session ? (
           <>
             <span>`Welcome ${user.username || user.email}`</span>

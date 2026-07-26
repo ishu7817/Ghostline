@@ -108,7 +108,6 @@ export default function UserDashboard() {
     });
   };
 
-  // Loading / Unauthorized state
   if (!session || !session.user) {
     return (
       <div className="min-h-screen bg-[#0a0a0a] text-white flex items-center justify-center px-4">
@@ -122,7 +121,6 @@ export default function UserDashboard() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-white selection:text-black">
-      {/* Integrated Navbar */}
       <nav className="border-b border-white/10 bg-black/20 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2 font-bold text-lg tracking-tight">
@@ -139,7 +137,6 @@ export default function UserDashboard() {
         </div>
       </nav>
 
-      {/* Logout Confirmation Modal */}
       <AnimatePresence>
         {isLogoutDialogOpen && (
           <motion.div
@@ -185,9 +182,7 @@ export default function UserDashboard() {
         )}
       </AnimatePresence>
 
-      {/* Main Content */}
       <main className="max-w-5xl mx-auto px-6 py-12 space-y-12">
-        {/* Header */}
         <header className="space-y-2">
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
             Dashboard
@@ -197,9 +192,7 @@ export default function UserDashboard() {
           </p>
         </header>
 
-        {/* Controls Grid */}
         <div className="grid gap-6 md:grid-cols-2">
-          {/* Link Container */}
           <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/10 flex flex-col justify-between hover:bg-white/[0.04] transition-colors">
             <h2 className="text-sm font-medium text-white/60 mb-4">
               Your Public Link
@@ -221,7 +214,6 @@ export default function UserDashboard() {
             </div>
           </div>
 
-          {/* Toggle Container */}
           <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/10 flex flex-col justify-between hover:bg-white/[0.04] transition-colors">
             <h2 className="text-sm font-medium text-white/60 mb-4">
               Message Status
@@ -246,7 +238,6 @@ export default function UserDashboard() {
 
         <hr className="border-white/10" />
 
-        {/* Messages Inbox */}
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-semibold tracking-tight text-white">Your Messages</h2>
@@ -263,7 +254,6 @@ export default function UserDashboard() {
             </button>
           </div>
 
-          {/* Messages Grid or Empty State */}
           {messages.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <AnimatePresence>
