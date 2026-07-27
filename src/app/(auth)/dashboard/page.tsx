@@ -14,7 +14,6 @@ import { Message } from "@/models/user.model";
 import { acceptMessageSchema } from "@/schemas/acceptMessageSchema";
 import { apiResponse } from "@/types/apiResponse";
 
-
 export default function UserDashboard() {
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -36,7 +35,8 @@ export default function UserDashboard() {
     } catch (error) {
       const axiosError = error as AxiosError<apiResponse>;
       toast.error("Error", {
-        description: axiosError.response?.data.message || "Could not load settings.",
+        description:
+          axiosError.response?.data.message || "Could not load settings.",
       });
     } finally {
       setIsSwitchLoading(false);
@@ -54,7 +54,8 @@ export default function UserDashboard() {
     } catch (error) {
       const axiosError = error as AxiosError<apiResponse>;
       toast.error("Error", {
-        description: axiosError.response?.data.message || "Failed to load messages.",
+        description:
+          axiosError.response?.data.message || "Failed to load messages.",
       });
     } finally {
       setIsLoading(false);
@@ -79,7 +80,8 @@ export default function UserDashboard() {
     } catch (error) {
       const axiosError = error as AxiosError<apiResponse>;
       toast.error("Error", {
-        description: axiosError.response?.data.message || "Failed to update settings.",
+        description:
+          axiosError.response?.data.message || "Failed to update settings.",
       });
     }
   };
@@ -87,18 +89,24 @@ export default function UserDashboard() {
   const handleDeleteMessage = async (messageId: string) => {
     try {
       await axios.delete<apiResponse>(`/api/delete-message/${messageId}`);
-      setMessages((prev) => prev.filter((message) => message._id.toString() !== messageId));
+      setMessages((prev) =>
+        prev.filter((message) => message._id.toString() !== messageId),
+      );
       toast.success("Message deleted");
     } catch (error) {
       const axiosError = error as AxiosError<apiResponse>;
       toast.error("Error", {
-        description: axiosError.response?.data.message || "Failed to delete message.",
+        description:
+          axiosError.response?.data.message || "Failed to delete message.",
       });
     }
   };
 
   const username = session?.user?.username;
-  const baseUrl = typeof window !== "undefined" ? `${window.location.protocol}//${window.location.host}` : "";
+  const baseUrl =
+    typeof window !== "undefined"
+      ? `${window.location.protocol}//${window.location.host}`
+      : "";
   const profileUrl = `${baseUrl}/u/${username}`;
 
   const copyToClipboard = () => {
@@ -112,8 +120,12 @@ export default function UserDashboard() {
     return (
       <div className="min-h-screen bg-[#0a0a0a] text-white flex items-center justify-center px-4">
         <div className="text-center space-y-4 p-8 rounded-2xl bg-white/[0.03] border border-white/10">
-          <h2 className="text-2xl font-bold tracking-tight text-white">Please sign in</h2>
-          <p className="text-white/60 text-sm">You need to be logged in to view your dashboard.</p>
+          <h2 className="text-2xl font-bold tracking-tight text-white">
+            Please sign in
+          </h2>
+          <p className="text-white/60 text-sm">
+            You need to be logged in to view your dashboard.
+          </p>
         </div>
       </div>
     );
@@ -121,6 +133,8 @@ export default function UserDashboard() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-white selection:text-black">
+      <div className="absolute bottom-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-gradient-to-tl from-violet-600/50 via-fuchsia-600/20 to-transparent blur-[200px] pointer-events-none" />
+      <div className="absolute bottom-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[700px] bg-gradient-to-br from-violet-300/50 via-fuchsia-300/20 to-transparent blur-[120px] pointer-events-none" />
       <nav className="border-b border-white/10 bg-black/20 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2 font-bold text-lg tracking-tight">
@@ -156,7 +170,7 @@ export default function UserDashboard() {
               <p className="text-white/60 text-sm mb-6">
                 Are you sure you want to log out of your account?
               </p>
-              
+
               <div className="flex gap-3 justify-end">
                 <button
                   onClick={() => setIsLogoutDialogOpen(false)}
@@ -165,13 +179,13 @@ export default function UserDashboard() {
                   No
                 </button>
                 <button
-                onKeyDown={(e) => {
-                          if (e.key === "Enter") {
-                            e.preventDefault();
-                            signOut({ callbackUrl: '/' })
-                          }
-                        }}
-                  onClick={() => signOut({ callbackUrl: '/' })}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      signOut({ callbackUrl: "/" });
+                    }
+                  }}
+                  onClick={() => signOut({ callbackUrl: "/" })}
                   className="px-4 cursor-pointer py-2 rounded-xl text-sm font-medium bg-white text-black hover:bg-neutral-200 transition-colors"
                 >
                   Yes
@@ -240,7 +254,9 @@ export default function UserDashboard() {
 
         <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-semibold tracking-tight text-white">Your Messages</h2>
+            <h2 className="text-xl font-semibold tracking-tight text-white">
+              Your Messages
+            </h2>
             <button
               onClick={(e) => {
                 e.preventDefault();
@@ -249,7 +265,9 @@ export default function UserDashboard() {
               disabled={isLoading}
               className=" cursor-pointer flex items-center gap-2 text-sm font-medium text-white/60 hover:text-white transition-colors"
             >
-              <RefreshCw className={`w-4 cursor-pointer h-4 ${isLoading ? "animate-spin" : ""}`} />
+              <RefreshCw
+                className={`w-4 cursor-pointer h-4 ${isLoading ? "animate-spin" : ""}`}
+              />
               Refresh
             </button>
           </div>
@@ -274,7 +292,9 @@ export default function UserDashboard() {
                         Anonymous
                       </span>
                       <button
-                        onClick={() => handleDeleteMessage(message._id.toString())}
+                        onClick={() =>
+                          handleDeleteMessage(message._id.toString())
+                        }
                         className="text-white/40 hover:text-red-400 transition-colors p-1"
                         title="Delete message"
                       >
@@ -288,9 +308,12 @@ export default function UserDashboard() {
           ) : (
             <div className="flex flex-col items-center justify-center py-16 px-6 text-center border border-dashed border-white/10 rounded-2xl bg-white/[0.01]">
               <MessageSquare className="w-8 h-8 text-white/20 mb-4" />
-              <h3 className="text-lg font-medium text-white mb-1">No messages yet</h3>
+              <h3 className="text-lg font-medium text-white mb-1">
+                No messages yet
+              </h3>
               <p className="text-white/50 text-sm max-w-sm">
-                Copy your public link above and share it on your socials to start receiving messages.
+                Copy your public link above and share it on your socials to
+                start receiving messages.
               </p>
             </div>
           )}
